@@ -1,0 +1,335 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <title>See the Code | mortgageCalculator</title>
+  <link rel="shortcut icon" type="image/png" href="images/favicon-32x32.png"/>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css"
+          integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+
+<body>
+    <header>
+    <!--Insert Menu-->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-gray">
+        <a class="navbar-brand" href="/index.html">mortgage<span class="text-magenta">Calculator</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-magenta" href="/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-magenta" href="/app.html">The App</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/code.html"><span class="sr-only">(current)</span>See the Code</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-magenta" href="#" target="_blank">
+                        Get the Code
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-cyan" href="https://kaseywahl.io/about.html" target="_blank">About Kasey</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </header>
+<div class="jumbotron jumbotron-fluid header">
+  <div class="container hero">
+    <div>
+        <h1 class="text-light text-center text-shadow">mortgage<span class="text-magenta">Calculator</span></h1>
+        <h3 class="text-light text-center text-shadow">Code Review</h3>
+    </div>
+  </div>
+</div>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card mt-5 bg-purple-light bg-opacity">
+<!-- Introduction -->
+<section>
+    <p>
+        This application populates two sections using the following functions:
+    </p>
+    <ul>
+        <li>buildPaymentSchedule</li>
+        <li>getPayments</li>
+        <li>calcPayment</li>
+        <li>calcInterest</li>
+        <li>calcPrincipal</li>
+        <li>displayData</li>
+    </ul>
+    <h6>Click the dropdowns below to learn more about the code.</h6>
+</section>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 offset-md-2">
+                <div class="accordion" id="scriptMarkUp">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <div class=" col-12 col-lg-4 offset-lg-4 text-center">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span class="explainer-dropdowns">Create data constructor and Build Payment Schedule
+                                    </button>
+                                    
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#scriptMarkUp">
+                            <div class="card-body">
+    <!-- Explainer text under the card-body structure -->
+    <div id="header-one">
+    <h5>Create constructor for data object</h5>
+    <p>This constructor serves as a template for each object of data inserted into the table.</p>
+    <p>
+        <span class="badge text-light bg-purple">Lines 1-10</span> create the structure for each "row" object in the data table.
+    </p>
+    <h5>Populate the data table</h5>
+    <p>
+        <span class="badge text-light bg-purple">Lines 15-17</span> wire the user's input to useable variables in JavaScript.
+    </p>
+    <p>
+        <span class="badge text-light bg-purple">Line 18</span> calls the getPayments function to populate the the paymentArray with row objects.
+    </p>
+    <p>
+        <span class="badge text-light bg-purple">Line 20</span> displays final values on the page.
+    </p>
+</div>
+    <pre class="line-numbers" data-start="1">
+<code class="language-javascript">    class row {
+    constructor(month, payment, principal, interest, totalInterest, balance) {
+        this.month = month,
+        this.payment = payment,
+        this.principal = principal,
+        this.interest = interest,
+        this.totalInterest = totalInterest,
+        this.balance = balance
+    }
+}
+
+//(When the user clicks the button)
+function buildPaymentSchedule() {
+    // Get some values
+    let balance = parseInt(document.getElementById("newAmount").value);
+    let term = parseInt(document.getElementById("newTerm").value) * 12;
+    let rate = parseFloat(document.getElementById("newInterest").value)/100;
+    let paymentArray = getPayments(balance, term, rate);
+
+    displayData(paymentArray, balance);
+}
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <div class=" col-12 col-lg-4 offset-lg-4 text-center">
+
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <span class="explainer-dropdowns">Calculate Values for each Row</span> 
+                                    </button>
+                                </h2>
+                            </div>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#scriptMarkUp">
+                            <div class="card-body">
+<div id="header-two">
+    <h5>Loop through the data to calculate monthly values and create data objects (rows)</h5>
+    <p><span class="badge text-light bg-purple">Line 25</span> creates an empty array to which objects will be added.</p>
+    <p>
+        <span class="badge text-light bg-purple">Lines 26-29</span> set baseline values.
+    </p>
+    <p>
+        <span class="badge text-light bg-purple">Lines 30-38</span> loop through the length of the mortgage term month-by-month to calculate interest, principal, and track total interest accrued/remaining balance. Then, the object is pushed to the result array and returned.
+    </p>
+</div>
+                                <pre class="line-numbers" data-start="24"><code class="language-js">function getPayments(balance, term, rate) {
+    let res = [];
+    let totalInterest = 0;
+    let prevBalance = balance;
+    let payment = calcPayment(balance, term, rate);
+    let remainingBalance = balance;
+    for(let i = 1; i <= term; i++) {
+        let interest = calcInterest(prevBalance, rate);
+        let principal = calcPrincipal(payment, interest);
+        totalInterest += interest;
+        remainingBalance -= principal;
+        prevBalance = remainingBalance;
+        res.push(new row(i, payment, principal, interest, totalInterest, remainingBalance))
+    }
+    return res;
+}
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <div class=" col-12 col-lg-4 offset-lg-4 text-center">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <span class="explainer-dropdowns">Three simple functions to return simple values</span>
+                                    </button>
+                                </h2>
+                            </div>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#scriptMarkUp">
+                            <div class="card-body">
+<div id="header-three">
+    <h5>These basic math functions exercise separation of concerns.</h5>
+    <p>
+        These functions are passed through the getPayments function as variables for concision and readability.
+    </p>
+</div>
+                                <pre class="line-numbers" data-start="41"><code class="language-js">//This function calculates the payments
+function calcPayment(balance, term, rate) {
+    let payment = balance * (rate / 12) / (1 - (1 + rate / 12) ** (0-term));
+    return payment;
+}
+
+//This function calculates the interest
+function calcInterest(prevBalance, rate) {
+    return (prevBalance * rate / 12)
+}
+
+//This function calculates the principal
+function calcPrincipal(payment, interest) {
+    return payment - interest;
+}
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFour">
+                            <div class=" col-12 col-lg-4 offset-lg-4 text-center">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        <span class="explainer-dropdowns">Append Data to the table</span>
+                                    </button>
+                                </h2>
+                            </div>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#scriptMarkUp">
+                            <div class="card-body">
+<div id="header-four">
+    <h5>We loop over the template, populating the text content row-by-row with each iteration of the loop.</h5>
+    <p><span class="badge text-light bg-purple">Lines 67-72</span> adds the value of the indexed object to the text content of the template.</p>
+    <p>
+        <span class="badge text-light bg-purple">Line 75</span> appends the data to the page.
+    </p>
+</div>
+                                <pre class="line-numbers" data-start="57"><code class="language-js">function displayData(payments, totalPrincipal) {
+    const template = document.getElementById("Data-template");
+    const resultsBody = document.getElementById('resultsBody');
+    //Clear teable
+    resultsBody.innerHTML = "";
+
+    for (let i = 0; i < payments.length; i++) {
+    const dataRow = document.importNode(template.content, true);
+
+    //Grab the nodes that create the table rows
+    dataRow.getElementById("templateMonth").textContent = payments[i].month;
+    dataRow.getElementById("templatePayment").textContent = `$${payments[i].payment.toFixed(2)}`;
+    dataRow.getElementById("templatePrincipal").textContent = `$${payments[i].principal.toFixed(2)}`;
+    dataRow.getElementById("templateInterest").textContent = `$${payments[i].interest.toFixed(2)}`;
+    dataRow.getElementById("templateTotalInterest").textContent = `$${payments[i].totalInterest.toFixed(2)}`;
+    dataRow.getElementById("templateBalance").textContent = `$${payments[i].balance.toFixed(2)}`;
+
+    //Append the nodes to the page
+    resultsBody.appendChild(dataRow);
+    }
+</code></pre>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFive">
+                            <div class=" col-12 col-lg-4 offset-lg-4 text-center">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-cf btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        <span class="explainer-dropdowns">Append the totals to the page</span>
+                                    </button>
+                                </h2>
+                            </div>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#scriptMarkUp">
+                            <div class="card-body">
+<div id="header-five">
+    <h5>Set the inner text of the right-side display to their values.</h5>
+</div>
+                                <pre class="line-numbers" data-start="78"><code class="language-js">    //Add the totals to the right side of the table
+    document.getElementById("monthly-payment").innerText = `$${payments[0].payment.toFixed(2)}`;
+    document.getElementById("final-principal").innerText = `$${totalPrincipal.toFixed(2).toLocaleString()}`;
+    let totalInterest = parseFloat(payments[(payments.length - 1)].totalInterest).toFixed(2).toLocaleString();
+    document.getElementById("final-interest").innerText = `$${totalInterest}`;
+    let totalCost = (totalPrincipal + totalInterest);
+    totalCost = totalCost.toFixed(2);
+    document.getElementById("final-cost").innerText = `$${totalCost.toLocaleString()}`;
+                        </code>
+</pre>
+                             </div>
+                            </div>
+                        </div>
+
+                    </div>
+                 </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+        <hr />    <footer class="footer bg-gray">
+      <div class="container bg-gray">
+          <div class="text-light text-center bg-gray">
+            <h4>Get in touch with <a class="text-cyan portfolio-link" href="https://kaseywahl.io/contact.html">Kasey</a>!</h4>
+    <p class="text-light">Copyright ©<script>
+        var CurrentYear = new Date().getFullYear()
+        document.write(CurrentYear)
+      </script> Kasey Wahl</p>
+  </div>
+      </div>
+    </footer>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"
+            integrity="sha512-WkVkkoB31AoI9DAk6SEEEyacH9etQXKUov4JRRuM1Y681VsTq7jYgrRw06cbP6Io7kPsKx+tLFpH/HXZSZ2YEQ==" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.js"
+            integrity="sha512-1oLZvExT5RaW4q2GgvRPf+XzVVGmsKirfZBRN7aifdOpvZ1L9idEncfMFlfHiQNGBA+Sev+alscSAT/xQ0rwXA==" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <title>The App | mortgageCalculator</title>
+  <link rel="shortcut icon" type="image/png" href="images/favicon-32x32.png"/>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#FFA000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/site.css">
+        <link rel="stylesheet" href="/css/prism.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+
+<body>
+
+    <!--Insert Menu-->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-gray mb-5">
+        <a class="navbar-brand" href="/index.html">mortgage<span class="text-magenta">Calculator</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-magenta" href="/index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/app.html"><span class="sr-only">(current)</span>The App</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-magenta" href="/code.html">See the Code</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-magenta" href="#" target="_blank">Get the Code</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-hover-cyan" href="https://kaseywahl.io/about.html" target="_blank">About Kasey</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="jumbotron jumbotron-fluid header">
+  <div class="container hero">
+    <div>
+        <h1 class="text-light text-center text-shadow">mortgage<span class="text-magenta">Calculator</span></h1>
+        <h3 class="text-light text-center text-shadow">Your <span class="text-magenta">mortage</span>, easier.</h3>
+    </div>
+  </div>
+</div>
+<!-- End Nav and Jumbotron -->
+
+    <!--Insert your main content here-->
+<main role="main" class="container card bg-secondary">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <table class="table table-striped table-dark">
+                        <tr>
+                            <th colspan="2" id="statsHeader">Enter Your Loan</th>
+                        </tr>
+                        <tr>
+                            <td>Loan Amount</td>
+                            <td><input id="newAmount" class="bg-purple-light" type="number" value="10000"></td>
+                        </tr>
+                        <tr>
+                            <td>Term (years)</td>
+                            <td><input id="newTerm" class="bg-purple-light" type="number" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>Interest (%)</td>
+                            <td><input id="newInterest" class="bg-purple-light text-dark" type="number" value="5"></td>
+                        </tr>
+                    </table>
+                    <button type="button" onclick="buildPaymentSchedule()" class="btn bg-purple text-light w-100">Calculate</button>
+                </div>
+                <div class="col-sm-6 order-first order-md-2">
+                    <div class="card w-100 text-center bg-purple-light">Your Monthly Payments</div>
+                    <table class="table table-dark table-striped">
+                         <tr>
+                            <td>Monthly Payment</td>
+                            <td id="monthly-payment">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Total Principal</td>
+                            <td id="final-principal">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Total Interest</td>
+                            <td id="final-interest">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Final Cost</td>
+                            <td id="final-cost">$0.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <hr>
+<table class="table table-striped" id="calcList">
+  <thead class="thead-dark">
+    <tr>
+      <th>Month</th>
+      <th>Payment</th>
+      <th>Principal</th>
+      <th>Interest</th>
+      <th>Total Interest</th>
+      <th>Balance</th>
+    </tr>
+  </thead>
+  <tbody id="resultsBody">
+    <!-- Data Goes Here -->
+  </tbody>
+</table> 
+
+</main>
+
+    <template id="Data-template">
+    <tr>
+      <td id="templateMonth"></td>
+      <td id="templatePayment"></td>
+      <td id="templatePrincipal"></td>
+      <td id="templateInterest"></td>
+      <td id="templateTotalInterest"></td>
+      <td id="templateBalance"></td>
+    </tr>
+    </template>
+
+    <footer class="footer bg-gray">
+      <div class="container bg-gray">
+          <div class="text-light text-center bg-gray">
+            <h4>Get in touch with <a class="text-cyan portfolio-link" href="https://kaseywahl.io/contact.html">Kasey</a>!</h4>
+    <p class="text-light">Copyright ©<script>
+        var CurrentYear = new Date().getFullYear()
+        document.write(CurrentYear)
+      </script> Kasey Wahl</p>
+  </div>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="/js/mortgage.js"></script>
+
+</body>
+
+</html>
