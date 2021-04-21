@@ -2,6 +2,7 @@
 [Live Demo](https://sad-noether-0f0dc3.netlify.app/) |
 [Portfolio](https://kaseywahl.io/)
 
+![mortgagecalc](https://user-images.githubusercontent.com/77030627/115626909-c4434f00-a2c3-11eb-900f-f908d829d493.png)
 ---
 ## Description
 This application allows the user to perform simple calculations on the balance of their mortgage loans.
